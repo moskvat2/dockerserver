@@ -3,12 +3,14 @@ PORTAINER=`docker ps -a | grep portainer | awk '{print $1}'`
 docker container rm -f $PORTAINER
 
 docker volume rm -f portainer_data
-rm -f /usr/bin/docker-compose /usr/bin/docker
+rm -rf /usr/bin/docker-compose
+rm -rf /usr/bin/docker
+rm -rf /usr/local/bin/docker-compose
 
 systemctl disable --now docker
-yum remove -y docker docker-ce docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-engine
+yum remove -y docker docker-ce docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-engine docker*
 
-rm -f /etc/yum.repos.d/docker-ce.repo
+rm -rf /etc/yum.repos.d/docker-ce.repo
 
 yum install -y yum-utils
 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
