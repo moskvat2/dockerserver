@@ -5,7 +5,7 @@ rm -f /usr/bin/docker-compose
 PORTAINER=`docker ps -a | grep portainer | awk '{print $1}'`
 docker container rm -f $PORTAINER
 
-docker volume rm -f portainer
+docker volume rm -f portainer_data
 
 yum install -y yum-utils
 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
